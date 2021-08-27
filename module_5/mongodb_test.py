@@ -1,11 +1,3 @@
-"""
-Title: mongodb_test.py
-Author: Sarah Duprey
-Date: 27 August 2021
-Description: Test Program for connecting to a 
-             MongoDB Atlas cluster
-"""
-
 import pymongo
 from pymongo import MongoClient
 
@@ -24,3 +16,4 @@ print(db.list_collection_names)
 
 # show an exit message
 input("\n\n End of program, press and key to exit...")
+
