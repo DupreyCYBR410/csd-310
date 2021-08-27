@@ -1,3 +1,11 @@
+"""
+Title: mongodb_test.py
+Author: Sarah Duprey
+Date: 27 August 2021
+Description: Test program for connecting to a
+              MongoDB Atlas cluster
+"""              
+
 import pymongo
 from pymongo import MongoClient
 
