@@ -22,37 +22,41 @@ CREATE TABLE team (
 );
 
 CREATE TABLE player (
-    player_id   INT            NOT NULL      AUTO_INCREMENT,
+    player_id   INT            NOT NULL      AUTO_INCREMENT, PRIMARY KEY
     first_name  VARCHAR(75)    NOT NULL,
     last_name   VARCHAR(75)    NOT NULL,
     team_id     INT            NOT NULL,
-    PRIMARY KEY(player_id),
-    CONSTRAINT fk_team
-    FOREIGN KEY(team_id)
-        REFERENCES team(team_id)
 );
+
+-- Had to change the way to set a foreign key for updated verison of MySQL --
+ALTER TABLE player
+    ADD FOREIGN KEY(team_id)
+    REFRENCES team(team_id);
+    
 
 INSERT INTO team(team_name, mascot)
     VALUES('Team Ravenclaw', 'The Eagles');
 
 INSERT INTO team(team_name, mascot)
     VALUES('Team Gryffindor', 'The Lions');
+    
+    
+ -- Change to the way player records inputed as SELECT command would not take --   
+INSERT INTO player(first_name, last_name, team_id)
+    VALUES('Luna', 'Lovegood', '1');
 
 INSERT INTO player(first_name, last_name, team_id)
-    VALUES('Luna', 'Lovegood', (SELECT team_id FROM team WHERE team_name = 'Team Ravenclaw'));
-
-INSERT INTO player(first_name, last_name, team_id)
-    VALUES('Cho', 'Chang', (SELECT team_id FROM team WHERE team_name = 'Team Ravenclaw'));
+    VALUES('Cho', 'Chang', '1');
 
  INSERT INTO player(first_name, last_name, team_id)
-    VALUES('Sybill', 'Trelawney', (SELECT team_id FROM team WHERE team_name = 'Team Ravenclaw'));
+    VALUES('Sybill', 'Trelawney', '1');
 
  INSERT INTO player(first_name, last_name, team_id)
-    VALUES('Hermione', 'Granger', (SELECT team_id FROM team WHERE team_name = 'Team Gryffindor'));
+    VALUES('Hermione', 'Granger', '2');
 
 INSERT INTO player(first_name, last_name, team_id)
-    VALUES('Ginny', 'Weasley', (SELECT team_id FROM team WHERE team_name = 'Team Gryffindor'));
+    VALUES('Ginny', 'Weasley', '2');
 
 INSERT INTO player(first_name, last_name, team_id)
-    VALUES('Minerva', 'McGonagall', (SELECT team_id FROM team WHERE team_name = 'Team Gryffindor'));
+    VALUES('Minerva', 'McGonagall', '2');
           
