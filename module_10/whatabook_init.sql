@@ -83,6 +83,25 @@ INSERT INTO book(book_name, author, details)
 
 INSERT INTO book(book_name, author, details)
     VALUES('The Assasins Blade', 'Sarah J. Maas', 'A collection of novellas');
+    
+INSERT INTO book(book_name, author, details)
+    VALUES('House of Earth and Blood', 'Sarah J. Maas', 'The first book in Cresent City series');
+
+INSERT INTO book(book_name, author, details)
+    VALUES('Just Listen', 'Sarah Dessen', 'Young adult contemporary');
+
+INSERT INTO book(book_name, author, details)
+    VALUES('Fantastic Beasts and Where to Find Them', 'J.K. Rowling', 'Fantasy about wizarding world');
+
+INSERT INTO book(book_name, author, details)
+    VALUES('This Lullaby', 'Sarah Dessen', 'Yound adult contemporary');
+
+INSERT INTO book(book_name, author, details)
+    VALUES('Harry Potter and the Order of the Phoenix', 'J.K. Rowling', 'The fifth book in series');
+
+INSERT INTO book(book_name, author, details)
+    VALUE('The White Queen', 'Philippa Gregory', 'Historical Fiction england');
+
 
 
 INSERT INTO user(first_name, last_name) 
@@ -93,6 +112,13 @@ INSERT INTO user(first_name, last_name)
 
 INSERT INTO user(first_name, last_name)
     VALUES('Celaena', 'Sardothien');
+
+INSERT INTO user(first_name, last_name)
+    VALUES('Rowan', 'Whitehorn');
+
+INSERT INTO user(first_name, last_name)
+    VALUES('Thomas', 'Cresswell');
+
 
 
 INSERT INTO wishlist(user_id, book_id) 
@@ -111,5 +137,17 @@ INSERT INTO wishlist(user_id, book_id)
     VALUES (
         (SELECT user_id FROM user WHERE first_name = 'Celaena'),
         (SELECT book_id FROM book WHERE book_name = 'Capturing the Devil')
+    );
+    
+INSERT INTO wishlist(user_id, book_id)
+    VALUES (
+        (SELECT user_id FROM user WHERE first_name = 'Rowan'),
+        (SELECT book_id FROM book WHERE book_name = 'Fantastic Beasts and Where to Find Them')
+    );
+
+INSERT INTO wishlist(user_id, book_id)
+    VALUES (
+        (SELECT user_id FROM user WHERE first_name = 'Thomas'),
+        (SELECT book_id FROM book WHERE book_name = 'Just Listen')
     );
     
