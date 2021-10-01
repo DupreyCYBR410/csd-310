@@ -21,10 +21,11 @@ config = {
 def show_menu():
     print("\n -- Main Menu --")
 
-    print("   1. View Books\n   2. View Store Locations\n   3. My Account\n   4. Exit Program")
+    print("   1. Book Listing\n   2. Store Locations\n   3. My Account\n   4. Exit Program")
 
     try:
-        choice = int(input('   <Example enter: 1 for book listing>: '))
+
+        choice = int(input('   Please Enter Selection to View: '))
 
         return choice
     except ValueError:
@@ -41,7 +42,7 @@ def show_books(_cursor):
     print("\n -- DISPLAYING BOOK LISTING -- ")
 
     for book in books:
-        print("  Book Id: {}\n  Book Name: {}\n  Author: {}\n".format(book[0], book[1], book[2]))
+        print("  Book ID: {}\n  Book Name: {}\n  Author: {}\n".format(book[0], book[1], book[2]))
 
 
 def show_locations(_cursor):
@@ -58,7 +59,7 @@ def show_locations(_cursor):
 def validate_user():
 
     try:
-        user_id = int(input('\n   Enter a customer id <Example 1 for user_id 1>:  '))
+        user_id = int(input('\n   Enter a customer ID:  '))
 
         if user_id < 0 or user_id > 5:
             print("\n  Invalid customer number, program terminated...\n")
@@ -76,7 +77,7 @@ def show_account_menu():
     try:
         print("\n      -- Customer Menu --")
         print("        1. Wishlist\n        2. Add Book\n        3. Main Menu")
-        account_option = int(input('        <Example enter: 1 for wishlist>: '))
+        account_option = int(input('        Enter Selection: '))
 
         return account_option
     except ValueError:
@@ -107,8 +108,6 @@ def show_books_to_add(_cursor, _user_id):
              "FROM book "
              "WHERE book_id NOT IN (SELECT book_id FROM wishlist WHERE user_id = {})".format(_user_id))
 
-    print(query)
-
     _cursor.execute(query)
 
     books_to_add = _cursor.fetchall()
@@ -118,8 +117,10 @@ def show_books_to_add(_cursor, _user_id):
     for book in books_to_add:
         print("    Book Id: {}\n    Book Name: {}\n".format(book[0], book[1]))
 
+
 def add_book_to_wishlist(_cursor, _user_id, _book_id):
     _cursor.execute("INSERT INTO wishlist(user_id, book_id) VALUES({}, {})".format(_user_id, _book_id))
+
 
 try:
 
@@ -149,8 +150,10 @@ try:
                     show_wishlist(cursor, my_user_id)
 
                 if account_option == 2:
-
+                    
+             
                     show_books_to_add(cursor, my_user_id)
+                    
 
                     book_id = int(input("\n    Enter the id of the book you want to add: "))
 
@@ -170,7 +173,7 @@ try:
 
         user_selection = show_menu()
 
-    print("\n\n   Program terminated...")
+    print("\n\n   Program terminated Goodbye...")
 
 except mysql.connector.Error as err:
 
